@@ -15,12 +15,16 @@ const insertUser = async (req: Request, res: Response) => {
 };
 
 const getAllUser = async (req: Request, res: Response) => {
-  const result = await UserService.getAllUser();
-  res.send({
-    success: true,
-    message: "Successfully Find",
-    data: result,
-  });
+  try {
+    const result = await UserService.getAllUser();
+    res.send({
+      success: true,
+      message: "Successfully Find",
+      data: result,
+    });
+  } catch (err) {
+    res.send(err);
+  }
 };
 
 const insertOrUpdate = async (req: Request, res: Response) => {

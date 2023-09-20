@@ -8,7 +8,12 @@ const insertUser = async (data: User): Promise<User> => {
 };
 
 const getAllUser = async () => {
-  const result = await prisma.user.findMany();
+  const result = await prisma.user.findMany({
+    select: {
+      email: true,
+      name: true,
+    },
+  });
   return result;
 };
 

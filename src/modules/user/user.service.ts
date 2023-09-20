@@ -9,10 +9,13 @@ const insertUser = async (data: User): Promise<User> => {
 
 const getAllUser = async () => {
   const result = await prisma.user.findMany({
-    select: {
-      email: true,
-      name: true,
-    },
+    // select: {
+    //   email: true,
+    //   name: true,
+    // },
+    include: {
+        profile: true
+    }
   });
   return result;
 };

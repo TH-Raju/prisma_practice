@@ -26,6 +26,18 @@ const getAllUser = async (req: Request, res: Response) => {
     res.send(err);
   }
 };
+const getSingleUser = async (req: Request, res: Response) => {
+  try {
+    const result = await UserService.getSingleUser(parseInt(req.params.id));
+    res.send({
+      success: true,
+      message: "Successfully Find",
+      data: result,
+    });
+  } catch (err) {
+    res.send(err);
+  }
+};
 
 const insertOrUpdate = async (req: Request, res: Response) => {
   const result = await UserService.insertOrUpdate(req.body);
@@ -39,5 +51,6 @@ const insertOrUpdate = async (req: Request, res: Response) => {
 export const UserController = {
   insertUser,
   getAllUser,
+  getSingleUser,
   insertOrUpdate,
 };

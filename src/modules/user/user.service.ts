@@ -14,8 +14,20 @@ const getAllUser = async () => {
     //   name: true,
     // },
     include: {
-        profile: true
-    }
+      profile: true,
+    },
+  });
+  return result;
+};
+const getSingleUser = async (id: number) => {
+  const result = await prisma.user.findUnique({
+    where: {
+      id,
+    },
+
+    include: {
+      profile: true,
+    },
   });
   return result;
 };
@@ -48,5 +60,6 @@ const insertOrUpdate = async (data: Profile): Promise<Profile> => {
 export const UserService = {
   insertUser,
   getAllUser,
+  getSingleUser,
   insertOrUpdate,
 };

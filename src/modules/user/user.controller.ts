@@ -23,7 +23,17 @@ const getAllUser = async (req: Request, res: Response) => {
   });
 };
 
+const insertOrUpdate = async (req: Request, res: Response) => {
+  const result = await UserService.insertOrUpdate(req.body);
+  res.send({
+    success: true,
+    message: "Successfully create/update Profile",
+    data: result,
+  });
+};
+
 export const UserController = {
   insertUser,
   getAllUser,
+  insertOrUpdate,
 };

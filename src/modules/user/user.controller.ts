@@ -3,7 +3,7 @@ import { UserService } from "./user.service";
 
 const insertUser = async (req: Request, res: Response) => {
   try {
-    const result = UserService.insertUser(req.body);
+    const result = await UserService.insertUser(req.body);
     res.send({
       success: true,
       message: "Successfully Added!!!",

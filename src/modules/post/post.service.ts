@@ -20,9 +20,11 @@ const getAllPost = async (option: any) => {
       author: true,
       category: true,
     },
-    orderBy: {
-      [sortBy]: sortOrder,
-    },
+    orderBy: sortBy && sortOrder ? {
+        [sortBy]: sortOrder,
+      } : {
+        createdAt: 'desc'
+      }
   });
   return result;
 };

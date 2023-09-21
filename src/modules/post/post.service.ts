@@ -14,8 +14,17 @@ const insertPost = async (data: Post): Promise<Post> => {
 };
 
 const getAllPost = async (option: any) => {
-  const { sortBy, sortOrder, searchTerm } = option;
+  const { sortBy, sortOrder, searchTerm, page, limit } = option;
+
+  // describe on bottom \/
+  let limitData = parseInt(limit);
+  let pageData = parseInt(page);
+  const skip = limitData * pageData - limitData;
+  const take = limitData;
+
   const result = await prisma.post.findMany({
+    skip,
+    take,
     include: {
       author: true,
       category: true,
@@ -68,3 +77,18 @@ export const PostService = {
   getAllPost,
   getSinglePost,
 };
+
+/**
+ * limit = 5
+ * page = 2
+ * total = 10
+ *
+ * take = limit
+ * skip = limit * page - limit
+ *      = 5 * 2 - 5
+ *
+ *
+ * 1 2 3 4 -show => 5 6 7 8 9 10 11 12 13 14 15
+ *
+ *
+ */

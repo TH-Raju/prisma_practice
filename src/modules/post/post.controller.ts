@@ -15,8 +15,10 @@ const createPost = async (req: Request, res: Response) => {
 };
 
 const getAllPost = async (req: Request, res: Response) => {
+  console.log(req.query);
+  const option = req.query;
   try {
-    const result = await PostService.getAllPost();
+    const result = await PostService.getAllPost(option);
     res.send({
       success: true,
       message: "Successfully Find Posts",

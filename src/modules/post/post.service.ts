@@ -29,9 +29,22 @@ const getAllPost = async (option: any) => {
             createdAt: "desc",
           },
     where: {
-      title: {
-        contains: searchTerm,
-      },
+      OR: [
+        {
+          title: {
+            contains: searchTerm,
+            mode: "insensitive",
+          },
+        },
+        {
+          author: {
+            name: {
+              contains: searchTerm,
+              mode: "insensitive",
+            },
+          },
+        },
+      ],
     },
   });
   return result;

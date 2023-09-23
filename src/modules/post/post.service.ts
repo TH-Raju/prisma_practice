@@ -112,7 +112,13 @@ const learnAggrigateAndGrouping = async () => {
   // });
 
   const result = await prisma.post.groupBy({
+    //we can use multiple value in there with 'title'
     by: ["title"],
+
+    // we can use aggreate also
+    _count: {
+      authorId: true,
+    },
   });
   return result;
 };

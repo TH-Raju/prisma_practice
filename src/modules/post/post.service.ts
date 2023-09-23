@@ -90,10 +90,20 @@ const updatePost = async (
   });
   return result;
 };
+
 const deletePost = async (id: number): Promise<Post> => {
   const result = await prisma.post.delete({
     where: {
       id,
+    },
+  });
+  return result;
+};
+
+const learnAggrigateAndGrouping = async () => {
+  const result = await prisma.post.aggregate({
+    _avg: {
+      authorId: true,
     },
   });
   return result;
@@ -105,6 +115,7 @@ export const PostService = {
   getSinglePost,
   updatePost,
   deletePost,
+  learnAggrigateAndGrouping,
 };
 
 /**

@@ -7,5 +7,6 @@ router.post("/create-post", PostController.createPost);
 router.get("/:id", PostController.getSinglePost);
 router.get("/", PostController.getAllPost);
 router.patch("/update/:id", PostController.updatePost);
+router.delete("/delete/post/:id", PostController.deletePost);
 
 export const PostRouter = router;
